@@ -28,54 +28,58 @@ html{
 }
 
 body{
-    background:#000;
+    background:#030303;
     color:#fff;
     overflow-x:hidden;
     cursor:none;
+
+    /* DARK SQUARE GRID */
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+
+    background-size:45px 45px;
+    background-position:center center;
 }
 
 /* =====================================================
-   SOFT LIGHT PINK BACKGROUND FROM BOTTOM
+   GRID OVERLAY
 ===================================================== */
 
 body::before{
     content:"";
     position:fixed;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:75%;
-    background:
-        radial-gradient(
-            ellipse at 50% 100%,
-            rgba(255,170,205,.28) 0%,
-            rgba(255,130,180,.16) 25%,
-            rgba(255,80,150,.07) 45%,
-            transparent 72%
-        );
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+
+    background-size:90px 90px;
+
     pointer-events:none;
-    z-index:-3;
+    z-index:-2;
 }
 
-/* Second very soft pink layer */
+/* =====================================================
+   DARK VIGNETTE
+===================================================== */
 
 body::after{
     content:"";
     position:fixed;
-    left:0;
-    bottom:-180px;
-    width:100%;
-    height:55%;
+    inset:0;
+
     background:
         radial-gradient(
-            ellipse at center bottom,
-            rgba(255,190,220,.22),
-            rgba(255,120,175,.08) 40%,
-            transparent 75%
+            circle at center,
+            transparent 0%,
+            rgba(0,0,0,.15) 55%,
+            rgba(0,0,0,.65) 100%
         );
-    filter:blur(25px);
+
     pointer-events:none;
-    z-index:-2;
+    z-index:-1;
 }
 
 /* =====================================================
@@ -88,20 +92,26 @@ body::after{
     left:0;
     width:100%;
     height:100%;
-    background:#000;
+
+    background:#030303;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+
     z-index:999999;
 }
 
 .spinner{
     width:80px;
     height:80px;
+
     border:7px solid #222;
     border-top:7px solid #fff;
+
     border-radius:50%;
+
     animation:spin 1s linear infinite;
 }
 
@@ -125,28 +135,42 @@ body::after{
 .cursor{
     width:28px;
     height:28px;
+
     border:2px solid #fff;
     border-radius:50%;
+
     position:fixed;
+
     pointer-events:none;
+
     transform:translate(-50%,-50%);
+
     transition:
         width .2s,
         height .2s,
         background .2s;
-    box-shadow:0 0 10px rgba(255,255,255,.45);
+
+    box-shadow:0 0 12px rgba(255,255,255,.25);
+
     z-index:99999;
 }
 
 .cursor-dot{
     width:7px;
     height:7px;
+
     background:#fff;
+
     border-radius:50%;
+
     position:fixed;
+
     pointer-events:none;
+
     transform:translate(-50%,-50%);
-    box-shadow:0 0 12px rgba(255,255,255,.6);
+
+    box-shadow:0 0 10px rgba(255,255,255,.35);
+
     z-index:100000;
 }
 
@@ -162,43 +186,67 @@ button{
 .sidebar{
     width:250px;
     height:100vh;
+
     position:fixed;
     top:0;
     left:0;
-    background:rgba(4,4,4,.96);
+
+    background:rgba(3,3,3,.94);
+
     backdrop-filter:blur(12px);
+
     border-right:1px solid #222;
+
     padding:25px;
-    box-shadow:10px 0 35px rgba(0,0,0,.7);
+
+    box-shadow:10px 0 30px rgba(0,0,0,.55);
+
     z-index:1000;
 }
 
 .logo{
     text-align:center;
+
     font-size:26px;
     font-weight:900;
+
     color:#fff;
+
     letter-spacing:1px;
+
     margin-bottom:40px;
 }
 
 .menu a{
     display:block;
+
     padding:13px;
+
     margin-bottom:12px;
-    border-radius:9px;
+
+    border-radius:8px;
+
     text-decoration:none;
-    color:#ddd;
-    background:#050505;
-    border:1px solid transparent;
+
+    color:#bbb;
+
+    background:rgba(10,10,10,.75);
+
+    border:1px solid #181818;
+
     transition:.3s;
 }
 
 .menu a:hover{
     background:#111;
+
     color:#fff;
-    border-color:#444;
+
+    border-color:#383838;
+
     transform:translateX(7px);
+
+    box-shadow:0 0 18px rgba(255,255,255,.035);
 }
 
 /* =====================================================
@@ -207,7 +255,8 @@ button{
 
 .main{
     margin-left:250px;
-    padding:30px;
+    padding:35px;
+
     position:relative;
     z-index:1;
 }
@@ -217,58 +266,21 @@ button{
 ===================================================== */
 
 .news-bar{
-    margin:10px 0 25px;
-    padding:12px;
-    border-radius:9px;
-    background:rgba(5,5,5,.92);
-    border:1px solid #222;
-    color:#fff;
-    font-weight:bold;
-}
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero-banner{
-    text-align:center;
-    padding:45px 20px;
-    border:1px solid #222;
-    border-radius:15px;
     margin:25px 0;
-    background:rgba(5,5,5,.94);
-    box-shadow:0 15px 45px rgba(0,0,0,.35);
-}
 
-.hero-banner h1{
-    color:#fff;
-    font-size:45px;
-    font-weight:900;
-    letter-spacing:1px;
-}
+    padding:12px;
 
-.hero-banner p{
-    color:#aaa;
-    margin:15px 0;
-    font-size:17px;
-}
+    border-radius:9px;
 
-.hero-btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:11px 32px;
-    background:#111;
-    color:#fff;
-    text-decoration:none;
-    border:1px solid #333;
-    border-radius:8px;
+    background:rgba(5,5,5,.88);
+
+    border:1px solid #222;
+
+    color:#ddd;
+
     font-weight:bold;
-    transition:.3s;
-}
 
-.hero-btn:hover{
-    background:#1b1b1b;
-    border-color:#555;
+    box-shadow:none;
 }
 
 /* =====================================================
@@ -277,13 +289,96 @@ button{
 
 .top{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 }
 
 .top h2{
     color:#fff;
-    font-size:25px;
+    font-weight:800;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero-banner{
+    text-align:center;
+
+    padding:50px 20px;
+
+    border:1px solid #252525;
+
+    border-radius:16px;
+
+    margin:25px 0;
+
+    background:rgba(5,5,5,.9);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+
+.hero-banner h1{
+    color:#fff;
+
+    font-size:48px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    text-shadow:none;
+}
+
+.hero-banner p{
+    color:#999;
+
+    margin:15px 0;
+
+    font-size:18px;
+}
+
+.hero-btn{
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:12px 35px;
+
+    background:#0b0b0b;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border:1px solid #292929;
+
+    border-radius:9px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.hero-btn:hover{
+    background:#151515;
+
+    border-color:#444;
+
+    color:#fff;
+
+    box-shadow:0 0 20px rgba(255,255,255,.04);
+}
+
+/* =====================================================
+   HR
+===================================================== */
+
+hr{
+    border-color:#222 !important;
+    opacity:1;
 }
 
 /* =====================================================
@@ -291,86 +386,92 @@ button{
 ===================================================== */
 
 .card-box{
-    background:rgba(5,5,5,.94);
+    background:rgba(5,5,5,.9);
+
     border:1px solid #222;
+
     padding:25px;
+
     border-radius:12px;
+
     text-align:center;
-    transition:.3s;
-    height:100%;
+
+    transition:.35s;
+
+    box-shadow:none;
 }
 
 .card-box:hover{
-    transform:translateY(-6px);
-    border-color:#444;
+    transform:translateY(-7px);
+
+    border-color:#3b3b3b;
+
     box-shadow:
-        0 10px 30px rgba(0,0,0,.6),
-        0 0 25px rgba(255,150,190,.05);
+        0 15px 35px rgba(0,0,0,.6),
+        0 0 20px rgba(255,255,255,.025);
 }
 
 .card-box h3{
     color:#fff;
+
     font-weight:900;
+
+    text-shadow:none;
 }
 
 .card-box h4{
     color:#fff;
+
     font-weight:900;
+
     letter-spacing:1px;
 }
 
 .card-box p{
-    color:#aaa;
+    color:#999;
 }
 
 /* =====================================================
-   BUTTON
-===================================================== */
-
-.btn-buy{
-    display:inline-block;
-    background:#111;
-    color:#fff;
-    padding:10px 30px;
-    border:1px solid #333;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.btn-buy:hover{
-    background:#1b1b1b;
-    border-color:#555;
-    color:#fff;
-}
-
-/* =====================================================
-   TABS
+   TOP TABS
 ===================================================== */
 
 .tabs{
     display:flex;
+
     flex-wrap:wrap;
-    gap:12px;
+
+    gap:15px;
+
     margin:25px 0;
 }
 
 .tab-btn{
-    background:#050505;
-    color:#fff;
-    padding:11px 22px;
-    border-radius:8px;
+    background:rgba(6,6,6,.9);
+
+    color:#ddd;
+
+    padding:12px 25px;
+
+    border-radius:9px;
+
     text-decoration:none;
+
     border:1px solid #222;
+
     transition:.3s;
-    font-weight:bold;
+
+    box-shadow:none;
 }
 
 .tab-btn:hover{
-    background:#151515;
+    background:#121212;
+
     color:#fff;
+
     border-color:#444;
+
+    box-shadow:0 0 18px rgba(255,255,255,.035);
+
     transform:translateY(-3px);
 }
 
@@ -380,68 +481,118 @@ button{
 
 #panels{
     position:relative;
-    background:rgba(5,5,5,.95);
-    border:1px solid #333;
+
+    background:rgba(5,5,5,.92);
+
+    border:1px solid #2b2b2b;
+
     border-radius:12px;
-    padding:34px 20px 20px;
-    margin:35px 0;
+
+    padding:32px 20px 20px;
+
+    margin:30px 0;
+
+    color:#fff;
 
     box-shadow:
-        0 20px 50px rgba(0,0,0,.5),
-        0 0 40px rgba(255,150,190,.035);
+        0 20px 45px rgba(0,0,0,.5);
 }
 
 /* =====================================================
-   TITLE ON BORDER
+   PANEL TITLE ON BORDER
 ===================================================== */
 
 #panels::before{
     content:"FREE ACCESS AVAILABLE PANELS";
-    position:absolute;
-    top:-14px;
-    left:22px;
 
-    background:#000;
+    position:absolute;
+
+    top:-13px;
+    left:20px;
+
+    background:#030303;
 
     color:#fff;
 
     padding:3px 14px;
 
     font-size:15px;
+
     font-weight:900;
 
     letter-spacing:1px;
 }
 
 /* =====================================================
-   NOTICE BOX
+   NOTICE
 ===================================================== */
 
 .notice-box{
     background:#080808;
-    border:1px solid #222;
+
+    border:1px solid #1f1f1f;
+
     border-radius:10px;
+
     padding:20px;
+
     margin-bottom:25px;
 }
 
 .notice-box h3{
     color:#fff;
+
     margin-bottom:12px;
 }
 
 .notice-box p{
-    color:#aaa;
+    color:#999;
 }
 
 .notice-box ul{
     margin:0;
+
     padding-left:20px;
 }
 
 .notice-box li{
-    color:#bbb;
+    color:#888;
+
     margin:7px 0;
+}
+
+/* =====================================================
+   DOWNLOAD BUTTON
+===================================================== */
+
+.btn-buy{
+    display:inline-block;
+
+    background:#0b0b0b;
+
+    color:#fff;
+
+    padding:10px 30px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    border:1px solid #292929;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.btn-buy:hover{
+    background:#151515;
+
+    border-color:#444;
+
+    color:#fff;
+
+    box-shadow:0 0 18px rgba(255,255,255,.04);
 }
 
 /* =====================================================
@@ -450,70 +601,41 @@ button{
 
 .clock-box{
     color:#fff;
+
     font-size:20px;
+
     font-weight:bold;
-    background:#050505;
+
+    text-shadow:none;
+
+    background:#080808;
+
     border:1px solid #222;
-    border-radius:8px;
+
+    border-radius:9px;
+
     padding:10px 20px;
+
     display:inline-block;
 }
 
 /* =====================================================
-   LIGHT PINK BOTTOM FLOATING GLOW
-===================================================== */
-
-.pink-glow{
-    position:fixed;
-    left:50%;
-    bottom:-260px;
-
-    width:900px;
-    height:500px;
-
-    transform:translateX(-50%);
-
-    background:radial-gradient(
-        ellipse,
-        rgba(255,175,205,.22) 0%,
-        rgba(255,120,175,.12) 35%,
-        transparent 72%
-    );
-
-    filter:blur(35px);
-
-    pointer-events:none;
-    z-index:-1;
-
-    animation:pinkPulse 5s ease-in-out infinite;
-}
-
-@keyframes pinkPulse{
-
-    0%,
-    100%{
-        opacity:.65;
-        transform:translateX(-50%) scale(1);
-    }
-
-    50%{
-        opacity:1;
-        transform:translateX(-50%) scale(1.08);
-    }
-
-}
-
-/* =====================================================
-   RAIN
+   RAIN - VERY DARK GRAY
 ===================================================== */
 
 .rain{
     position:fixed;
+
     top:-100px;
+
     width:1px;
-    background:rgba(255,180,210,.15);
+
+    background:rgba(255,255,255,.08);
+
     pointer-events:none;
+
     z-index:-1;
+
     animation:rainFall 1s linear forwards;
 }
 
@@ -521,7 +643,7 @@ button{
 
     from{
         transform:translateY(0);
-        opacity:.5;
+        opacity:.4;
     }
 
     to{
@@ -547,7 +669,7 @@ button{
     }
 
     .hero-banner h1{
-        font-size:35px;
+        font-size:36px;
     }
 
 }
@@ -565,14 +687,19 @@ button{
 
     .sidebar{
         position:relative;
+
         width:100%;
+
         height:auto;
+
         border-right:none;
+
         border-bottom:1px solid #222;
     }
 
     .main{
         margin-left:0;
+
         padding:15px;
     }
 
@@ -595,12 +722,10 @@ button{
 }
 
 </style>
+
 </head>
 
 <body>
-
-<!-- BOTTOM PINK GLOW -->
-<div class="pink-glow"></div>
 
 <!-- =====================================================
      LOADER
@@ -616,12 +741,15 @@ button{
 
 </div>
 
+
 <!-- =====================================================
      CURSOR
 ===================================================== -->
 
 <div class="cursor"></div>
+
 <div class="cursor-dot"></div>
+
 
 <!-- =====================================================
      SIDEBAR
@@ -663,11 +791,13 @@ button{
 
 </div>
 
+
 <!-- =====================================================
-     MAIN DASHBOARD
+     DASHBOARD
 ===================================================== -->
 
 <div class="main">
+
 
     <!-- NEWS -->
 
@@ -688,11 +818,13 @@ button{
 
     </div>
 
+
     <!-- =================================================
          STATS
     ================================================== -->
 
     <div class="row g-4 my-4">
+
 
         <div class="col-md-3">
 
@@ -761,13 +893,16 @@ button{
 
         </div>
 
+
     </div>
+
 
     <!-- =================================================
          HERO
     ================================================== -->
 
     <div class="top">
+
 
         <div class="hero-banner">
 
@@ -779,25 +914,34 @@ button{
                 Premium Panels • Premium bypass • Main id safe
             </p>
 
-            <a href="#panels" class="hero-btn">
+            <a
+                href="#panels"
+                class="hero-btn">
+
                 🔥 Explore Now
+
             </a>
 
         </div>
+
 
         <h2>
             Welcome Back 👋
         </h2>
 
+
     </div>
 
-    <hr style="border-color:#222;">
+
+    <hr>
+
 
     <!-- =================================================
-         TOP DOWNLOAD BUTTONS
+         TOP DOWNLOAD TABS
     ================================================== -->
 
     <div class="tabs">
+
 
         <a
             href="https://www.mediafire.com/file/w0xl6ah3nqd4jvv/Msi_App_Player.rar/file"
@@ -834,16 +978,20 @@ button{
 
         </a>
 
+
     </div>
+
 
     <br>
     <br>
+
 
     <!-- =================================================
          PANELS
     ================================================== -->
 
     <div id="panels">
+
 
         <!-- NOTICE -->
 
@@ -879,17 +1027,20 @@ button{
 
         </div>
 
+
         <!-- =================================================
              PANEL CARDS
         ================================================== -->
 
         <div class="row g-4">
 
+
             <!-- FREE BYPASS -->
 
             <div class="col-md-4">
 
                 <div class="card-box">
+
 
                     <h4>
                         <b>
@@ -899,10 +1050,10 @@ button{
                         </b>
                     </h4>
 
+
                     <p>
 
                         <i>
-
                             <br>
 
                             <b>
@@ -919,6 +1070,7 @@ button{
 
                     </p>
 
+
                     <a
                         href="https://www.mediafire.com/file/wzs7bcqwyjj30mx/MALIYA+CHEATZ+FREE+UID+BYPASS+V9.6.zip/file"
                         class="btn-buy">
@@ -931,6 +1083,7 @@ button{
 
                     </a>
 
+
                 </div>
 
             </div>
@@ -942,6 +1095,7 @@ button{
 
                 <div class="card-box">
 
+
                     <h4>
                         <b>
                             <i>
@@ -950,10 +1104,10 @@ button{
                         </b>
                     </h4>
 
+
                     <p>
 
                         <i>
-
                             <br>
 
                             <b>
@@ -969,6 +1123,7 @@ button{
                         </i>
 
                     </p>
+
 
                     <a
                         href="https://www.mediafire.com/file/hkynhaqm327qad9/M!KEY+CHEATZ++PANELC#+V1.0.zip/file"
@@ -982,6 +1137,7 @@ button{
 
                     </a>
 
+
                 </div>
 
             </div>
@@ -993,6 +1149,7 @@ button{
 
                 <div class="card-box">
 
+
                     <h4>
                         <b>
                             <i>
@@ -1001,10 +1158,10 @@ button{
                         </b>
                     </h4>
 
+
                     <p>
 
                         <i>
-
                             <br>
 
                             <b>
@@ -1021,6 +1178,7 @@ button{
 
                     </p>
 
+
                     <a
                         href="https://www.mediafire.com/file/crcscmw8p3f7ek5/M!KEY+HEX++INTERNEL+V9.9.zip/file"
                         class="btn-buy">
@@ -1033,15 +1191,20 @@ button{
 
                     </a>
 
+
                 </div>
 
             </div>
 
+
         </div>
+
 
     </div>
 
+
 </div>
+
 
 <!-- =====================================================
      CURSOR SCRIPT
@@ -1049,8 +1212,12 @@ button{
 
 <script>
 
-const cursor = document.querySelector(".cursor");
-const dot = document.querySelector(".cursor-dot");
+const cursor =
+    document.querySelector(".cursor");
+
+const dot =
+    document.querySelector(".cursor-dot");
+
 
 document.addEventListener("mousemove",(e)=>{
 
@@ -1059,6 +1226,7 @@ document.addEventListener("mousemove",(e)=>{
 
     cursor.style.top =
         e.clientY + "px";
+
 
     dot.style.left =
         e.clientX + "px";
@@ -1071,9 +1239,11 @@ document.addEventListener("mousemove",(e)=>{
 
 document.querySelectorAll("a,button").forEach(item=>{
 
+
     item.addEventListener("mouseenter",()=>{
 
         cursor.style.width="45px";
+
         cursor.style.height="45px";
 
         cursor.style.background=
@@ -1085,6 +1255,7 @@ document.querySelectorAll("a,button").forEach(item=>{
     item.addEventListener("mouseleave",()=>{
 
         cursor.style.width="28px";
+
         cursor.style.height="28px";
 
         cursor.style.background=
@@ -1092,9 +1263,11 @@ document.querySelectorAll("a,button").forEach(item=>{
 
     });
 
+
 });
 
 </script>
+
 
 <!-- =====================================================
      LOGIN CHECK
@@ -1102,19 +1275,14 @@ document.querySelectorAll("a,button").forEach(item=>{
 
 <script>
 
-/*
-   Dashboard login protection.
-   If login value is not true,
-   user will return to index.html.
-*/
-
-if(sessionStorage.getItem("login") !== "true"){
+if(sessionStorage.getItem("login")!="true"){
 
     window.location.href="index.html";
 
 }
 
 </script>
+
 
 <!-- =====================================================
      MOUSE TRAIL
@@ -1127,35 +1295,45 @@ document.addEventListener("mousemove",function(e){
     let trail =
         document.createElement("span");
 
+
     trail.style.position="fixed";
 
-    trail.style.left=
-        e.clientX+"px";
+    trail.style.left =
+        e.clientX + "px";
 
-    trail.style.top=
-        e.clientY+"px";
+    trail.style.top =
+        e.clientY + "px";
+
 
     trail.style.width="9px";
 
     trail.style.height="9px";
 
+
     trail.style.background=
-        "rgba(255,190,215,.8)";
+        "rgba(255,255,255,.55)";
+
 
     trail.style.borderRadius="50%";
 
+
     trail.style.pointerEvents="none";
 
+
     trail.style.boxShadow=
-        "0 0 10px rgba(255,170,205,.6)";
+        "0 0 8px rgba(255,255,255,.3)";
+
 
     trail.style.transform=
         "translate(-50%,-50%)";
 
+
     trail.style.zIndex="9998";
+
 
     trail.style.transition=
         "all .6s linear";
+
 
     document.body.appendChild(trail);
 
@@ -1177,9 +1355,11 @@ document.addEventListener("mousemove",function(e){
 
     },600);
 
+
 });
 
 </script>
+
 
 <!-- =====================================================
      LOADER HIDE
@@ -1194,6 +1374,7 @@ window.addEventListener("load",function(){
         const loader =
             document.getElementById("loader");
 
+
         if(loader){
 
             loader.style.display="none";
@@ -1206,8 +1387,9 @@ window.addEventListener("load",function(){
 
 </script>
 
+
 <!-- =====================================================
-     LIGHT PINK RAIN
+     DARK GRID RAIN
 ===================================================== -->
 
 <script>
@@ -1217,20 +1399,25 @@ function createRain(){
     const rain =
         document.createElement("div");
 
+
     rain.className="rain";
 
-    rain.style.left=
+
+    rain.style.left =
         Math.random() *
         window.innerWidth +
         "px";
 
-    rain.style.height=
+
+    rain.style.height =
         (50 + Math.random()*100) +
         "px";
 
-    rain.style.animationDuration=
+
+    rain.style.animationDuration =
         (0.5 + Math.random()*0.6) +
         "s";
+
 
     document.body.appendChild(rain);
 
@@ -1255,6 +1442,7 @@ setInterval(()=>{
 },180);
 
 </script>
+
 
 </body>
 </html>
