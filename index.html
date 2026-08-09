@@ -318,13 +318,23 @@ button:hover{
 <script>
 function login(){
 
-    let user=document.getElementById("username").value;
-    let pass=document.getElementById("password").value;
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
 
-    if(user==="maliya" && pass==="1"){
-    if(user==="mihin" && pass==="1"){
-        sessionStorage.setItem("login","true");
-        window.location.href="loging.html";
+    const users = {
+        "maliya": "1",
+        "user2": "1234",
+        "user3": "5678",
+        "user4": "9999",
+        "user5": "0000"
+    };
+
+    if(users[user] && users[user] === pass){
+
+        sessionStorage.setItem("login", "true");
+        sessionStorage.setItem("username", user);
+
+        window.location.href = "loging.html";
 
     }else{
 
