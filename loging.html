@@ -1,196 +1,956 @@
-```css
-/* ===== PURE BLACK THEME ===== */
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>M!KEY x CHEATZ Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+/* ================================
+   RESET
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
-    background:#000 !important;
-    color:#fff !important;
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+    cursor:none;
 }
+
+/* ================================
+   BACKGROUND
+================================ */
 
 body::before{
-    display:none !important;
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.025),transparent 25%),
+        radial-gradient(circle at 80% 80%,rgba(255,255,255,.02),transparent 25%);
+    z-index:-1;
 }
 
-/* Sidebar */
+/* ================================
+   LOADER
+================================ */
+
+#loader{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.spinner{
+    width:80px;
+    height:80px;
+    border:7px solid #222;
+    border-top:7px solid #fff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+#loader h2{
+    color:#fff;
+    margin-top:20px;
+    font-size:22px;
+    letter-spacing:2px;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* ================================
+   CURSOR
+================================ */
+
+.cursor{
+    width:28px;
+    height:28px;
+    border:2px solid #fff;
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    transition:
+        width .2s,
+        height .2s,
+        background .2s;
+    box-shadow:0 0 10px rgba(255,255,255,.4);
+    z-index:99999;
+}
+
+.cursor-dot{
+    width:7px;
+    height:7px;
+    background:#fff;
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    box-shadow:0 0 10px rgba(255,255,255,.5);
+    z-index:100000;
+}
+
+a,
+button{
+    cursor:none;
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+
 .sidebar{
-    background:#050505 !important;
-    border-right:1px solid #222 !important;
-    box-shadow:none !important;
+    width:250px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:#050505;
+    border-right:1px solid #222;
+    padding:25px;
+    box-shadow:10px 0 30px rgba(255,255,255,.02);
+    z-index:1000;
 }
 
-/* Logo */
 .logo{
-    color:#fff !important;
-    text-shadow:none !important;
+    text-align:center;
+    font-size:25px;
+    font-weight:bold;
+    color:#fff;
+    letter-spacing:1px;
+    margin-bottom:40px;
 }
 
-/* Menu */
 .menu a{
-    color:#ddd !important;
-    background:#050505 !important;
+    display:block;
+    padding:13px;
+    margin-bottom:12px;
+    border-radius:8px;
+    text-decoration:none;
+    color:#ddd;
+    background:#050505;
+    border:1px solid transparent;
+    transition:.3s;
 }
 
 .menu a:hover{
-    background:#111 !important;
-    color:#fff !important;
-    box-shadow:0 0 10px #222 !important;
-}
-
-/* Main headings */
-.top h2,
-.hero-banner h1,
-.card-box h3,
-.card-box h4{
-    color:#fff !important;
-    text-shadow:none !important;
-}
-
-/* Hero */
-.hero-banner{
-    background:#050505 !important;
-    border:1px solid #222 !important;
-    box-shadow:none !important;
-}
-
-.hero-banner p{
-    color:#aaa !important;
-}
-
-.hero-btn{
-    background:#111 !important;
-    border:1px solid #333 !important;
-    color:#fff !important;
-    box-shadow:none !important;
-}
-
-.hero-btn:hover{
-    background:#1a1a1a !important;
-    box-shadow:0 0 15px #333 !important;
-}
-
-/* News */
-.news-bar{
-    background:#050505 !important;
-    border:1px solid #222 !important;
-    color:#fff !important;
-    box-shadow:none !important;
-}
-
-/* Cards */
-.card-box{
-    background:#050505 !important;
-    border:1px solid #222 !important;
-    box-shadow:none !important;
-}
-
-.card-box:hover{
-    transform:translateY(-5px) !important;
-    box-shadow:0 0 15px #222 !important;
-}
-
-/* Buttons */
-.btn-buy{
-    background:#111 !important;
-    border:1px solid #333 !important;
-    color:#fff !important;
-    box-shadow:none !important;
-}
-
-.btn-buy:hover{
-    background:#1c1c1c !important;
-    box-shadow:0 0 15px #333 !important;
-}
-
-/* Tabs */
-.tab-btn{
-    background:#050505 !important;
-    border:1px solid #222 !important;
-    color:#fff !important;
-    box-shadow:none !important;
-}
-
-.tab-btn:hover{
-    background:#151515 !important;
-    color:#fff !important;
-    box-shadow:0 0 15px #333 !important;
-}
-
-/* ===== BLACK SECTION BOX ===== */
-
-#panels{
-    position:relative !important;
-    background:#050505 !important;
-    border:1px solid #333 !important;
-    border-radius:12px !important;
-    box-shadow:none !important;
-    margin-top:35px !important;
-    padding:30px 20px 20px !important;
-}
-
-/* Title sitting on the border */
-#panels::before{
-    content:"FREE ACCESS AVAILABLE PANELS";
-    position:absolute;
-    top:-13px;
-    left:20px;
-    background:#000;
+    background:#111;
     color:#fff;
-    padding:2px 14px;
-    font-size:16px;
+    border-color:#333;
+    transform:translateX(7px);
+}
+
+/* ================================
+   MAIN
+================================ */
+
+.main{
+    margin-left:250px;
+    padding:30px;
+}
+
+/* ================================
+   NEWS BAR
+================================ */
+
+.news-bar{
+    margin:10px 0 25px;
+    padding:12px;
+    border-radius:8px;
+    background:#050505;
+    border:1px solid #222;
+    color:#fff;
+    font-weight:bold;
+    overflow:hidden;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero-banner{
+    text-align:center;
+    padding:45px 20px;
+    border:1px solid #222;
+    border-radius:15px;
+    margin:25px 0;
+    background:#050505;
+    box-shadow:none;
+}
+
+.hero-banner h1{
+    color:#fff;
+    font-size:45px;
     font-weight:900;
     letter-spacing:1px;
 }
 
-/* Notice title */
-#panels h3{
-    color:#fff !important;
-    text-shadow:none !important;
+.hero-banner p{
+    color:#aaa;
+    margin:15px 0;
+    font-size:17px;
 }
 
-/* Notice text */
-#panels p,
-#panels li{
-    color:#bbb !important;
+.hero-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:11px 32px;
+    background:#111;
+    color:#fff;
+    text-decoration:none;
+    border:1px solid #333;
+    border-radius:8px;
+    font-weight:bold;
+    transition:.3s;
 }
 
-/* Loader */
-#loader{
-    background:#000 !important;
+.hero-btn:hover{
+    background:#1b1b1b;
+    border-color:#555;
 }
 
-.spinner{
-    border:8px solid #222 !important;
-    border-top:8px solid #fff !important;
-    box-shadow:none !important;
+/* ================================
+   TOP
+================================ */
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-#loader h2{
-    color:#fff !important;
-    text-shadow:none !important;
+.top h2{
+    color:#fff;
+    font-size:25px;
 }
 
-/* Clock */
+/* ================================
+   CARDS
+================================ */
+
+.card-box{
+    background:#050505;
+    border:1px solid #222;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    transition:.3s;
+    height:100%;
+}
+
+.card-box:hover{
+    transform:translateY(-6px);
+    border-color:#444;
+    box-shadow:0 10px 30px rgba(255,255,255,.04);
+}
+
+.card-box h3{
+    color:#fff;
+    font-weight:900;
+}
+
+.card-box h4{
+    color:#fff;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.card-box p{
+    color:#aaa;
+}
+
+/* ================================
+   BUTTON
+================================ */
+
+.btn-buy{
+    display:inline-block;
+    background:#111;
+    color:#fff;
+    padding:10px 30px;
+    border:1px solid #333;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-buy:hover{
+    background:#1b1b1b;
+    border-color:#555;
+    color:#fff;
+}
+
+/* ================================
+   TABS
+================================ */
+
+.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin:25px 0;
+}
+
+.tab-btn{
+    background:#050505;
+    color:#fff;
+    padding:11px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    border:1px solid #222;
+    transition:.3s;
+    font-weight:bold;
+}
+
+.tab-btn:hover{
+    background:#151515;
+    color:#fff;
+    border-color:#444;
+    transform:translateY(-3px);
+}
+
+/* ================================
+   PANELS SECTION
+================================ */
+
+#panels{
+    position:relative;
+    background:#050505;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:32px 20px 20px;
+    margin:35px 0;
+}
+
+/* TITLE ON BORDER */
+
+#panels::before{
+    content:"FREE ACCESS AVAILABLE PANELS";
+    position:absolute;
+    top:-14px;
+    left:22px;
+    background:#000;
+    color:#fff;
+    padding:3px 14px;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+/* ================================
+   NOTICE
+================================ */
+
+.notice-box{
+    background:#080808;
+    border:1px solid #222;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.notice-box h3{
+    color:#fff;
+    margin-bottom:12px;
+}
+
+.notice-box p{
+    color:#aaa;
+}
+
+.notice-box ul{
+    margin:0;
+    padding-left:20px;
+}
+
+.notice-box li{
+    color:#bbb;
+    margin:7px 0;
+}
+
+/* ================================
+   CLOCK
+================================ */
+
 .clock-box{
-    color:#fff !important;
-    background:#050505 !important;
-    border:1px solid #222 !important;
-    box-shadow:none !important;
-    text-shadow:none !important;
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    text-shadow:none;
+    background:#050505;
+    border:1px solid #222;
+    border-radius:8px;
+    padding:10px 20px;
+    display:inline-block;
 }
 
-/* Cursor */
-.cursor{
-    border-color:#fff !important;
-    box-shadow:0 0 10px #fff !important;
+/* ================================
+   RAIN / TRAIL
+================================ */
+
+.rain{
+    position:fixed;
+    top:-100px;
+    width:1px;
+    background:rgba(255,255,255,.15);
+    pointer-events:none;
+    z-index:-1;
+    animation:rainFall 1s linear forwards;
 }
 
-.cursor-dot{
-    background:#fff !important;
-    box-shadow:0 0 10px #fff !important;
+@keyframes rainFall{
+    from{
+        transform:translateY(0);
+        opacity:.5;
+    }
+    to{
+        transform:translateY(120vh);
+        opacity:0;
+    }
 }
 
-/* Mouse trail */
-.trail{
-    background:#fff !important;
-    box-shadow:0 0 10px #fff !important;
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:210px;
+    }
+
+    .main{
+        margin-left:210px;
+        padding:20px;
+    }
+
+    .hero-banner h1{
+        font-size:35px;
+    }
+
 }
+
+@media(max-width:700px){
+
+    body{
+        cursor:auto;
+    }
+
+    .cursor,
+    .cursor-dot{
+        display:none;
+    }
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid #222;
+    }
+
+    .main{
+        margin-left:0;
+        padding:15px;
+    }
+
+    .top{
+        display:block;
+    }
+
+    .hero-banner h1{
+        font-size:30px;
+    }
+
+    .tabs{
+        flex-direction:column;
+    }
+
+    .tab-btn{
+        text-align:center;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================================
+     LOADER
+================================ -->
+
+<div id="loader">
+    <div class="spinner"></div>
+    <h2>M!KEY x CHEATZ</h2>
+</div>
+
+<!-- ================================
+     CURSOR
+================================ -->
+
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<!-- ================================
+     SIDEBAR
+================================ -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        M!KEY x CHEATZ
+    </div>
+
+    <div class="menu">
+
+        <a href="#">
+            🏠 HOME
+        </a>
+
+        <a href="panels.html">
+            🎮 Panels
+        </a>
+
+        <a href="project.html">
+            🆓 Free Project
+        </a>
+
+        <a href="oders.html">
+            📦 Orders
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+        <a href="index.html">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ================================
+     DASHBOARD
+================================ -->
+
+<div class="main">
+
+    <!-- NEWS -->
+
+    <div class="news-bar">
+        <marquee behavior="scroll" direction="left">
+            🔥 NEW UPDATE: Free Bypass V9.6 Added |
+            🎮 New Emulator Uploaded |
+            📱 Latest APK Available |
+            💙 Welcome to MALIYA CHEATZ
+        </marquee>
+    </div>
+
+    <!-- STATS -->
+
+    <div class="row g-4 my-4">
+
+        <div class="col-md-3">
+            <div class="card-box">
+                <h3>👥 12K+</h3>
+                <p>Users</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box">
+                <h3>⬇ 58K+</h3>
+                <p>Downloads</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box">
+                <h3>📂 30+</h3>
+                <p>Files</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box">
+                <h3>🟢 ONLINE</h3>
+                <p>Server Status</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- HERO -->
+
+    <div class="top">
+
+        <div class="hero-banner">
+
+            <h1>
+                🚀 M!KEY x CHEATZ
+            </h1>
+
+            <p>
+                Premium Panels • Premium bypass • Main id safe
+            </p>
+
+            <a href="#panels" class="hero-btn">
+                🔥 Explore Now
+            </a>
+
+        </div>
+
+        <h2>
+            Welcome Back 👋
+        </h2>
+
+    </div>
+
+    <hr style="border-color:#222;">
+
+    <!-- ================================
+         TOP DOWNLOAD TABS
+    ================================= -->
+
+    <div class="tabs">
+
+        <a href="https://www.mediafire.com/file/w0xl6ah3nqd4jvv/Msi_App_Player.rar/file"
+           class="tab-btn">
+            🎮 MSI EMULATOR
+        </a>
+
+        <a href="https://www.mediafire.com/file/uvkfdsjcfbqovde/BlueStacks_App_Player_v5.22.130.1019.exe/file"
+           class="tab-btn">
+            🎮 BLOOSTACKS EMULATOR
+        </a>
+
+        <a href="https://www.mediafire.com/file/6zos07nidhlt1m0/FF_Normal_HDN_REGEDIT_OB54.xapk/file"
+           class="tab-btn">
+            📱 APKS
+        </a>
+
+        <a href="https://www.mediafire.com/file/tljrgnyfxhmcqli/PANEL_DRIVERS.zip/file"
+           class="tab-btn">
+            🛠 ERROR FIX
+        </a>
+
+    </div>
+
+    <br><br>
+
+    <!-- ================================
+         PANELS
+    ================================= -->
+
+    <div id="panels">
+
+        <!-- NOTICE -->
+
+        <div class="notice-box">
+
+            <h3>
+                📢 Important Notice
+            </h3>
+
+            <p>
+                Please read the instructions before downloading any files.
+            </p>
+
+            <ul>
+                <li>✔ First download panel in download links.</li>
+                <li>✔ User name and password come my inbox.</li>
+                <li>✔ Risk functions don't use in main ID.</li>
+                <li>✔ If you have any problems DM to me.</li>
+            </ul>
+
+        </div>
+
+        <!-- PANEL CARDS -->
+
+        <div class="row g-4">
+
+            <!-- FREE BYPASS -->
+
+            <div class="col-md-4">
+
+                <div class="card-box">
+
+                    <h4>
+                        <b><i>FREE BYPASS</i></b>
+                    </h4>
+
+                    <p>
+                        <i>
+                            <br>
+                            <b>USER - TEST</b>
+                            <br>
+                            <b>PASSWORD - 123</b>
+                        </i>
+                    </p>
+
+                    <a href="https://www.mediafire.com/file/wzs7bcqwyjj30mx/MALIYA+CHEATZ+FREE+UID+BYPASS+V9.6.zip/file"
+                       class="btn-buy">
+                        <i><b>// UPDATING NOW \\</b></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- FREE PANEL -->
+
+            <div class="col-md-4">
+
+                <div class="card-box">
+
+                    <h4>
+                        <b><i>FREE PANEL</i></b>
+                    </h4>
+
+                    <p>
+                        <i>
+                            <br>
+                            <b>USER - ESP</b>
+                            <br>
+                            <b>PASSWORD - 222</b>
+                        </i>
+                    </p>
+
+                    <a href="https://www.mediafire.com/file/hkynhaqm327qad9/M!KEY+CHEATZ++PANELC#+V1.0.zip/file"
+                       class="btn-buy">
+                        <b><i>// DOWNLOAD \\</i></b>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- INTERNAL PANEL -->
+
+            <div class="col-md-4">
+
+                <div class="card-box">
+
+                    <h4>
+                        <b><i>INTERNEL PANEL</i></b>
+                    </h4>
+
+                    <p>
+                        <i>
+                            <br>
+                            <b>USER - ESP</b>
+                            <br>
+                            <b>PASSWORD - 222</b>
+                        </i>
+                    </p>
+
+                    <a href="https://www.mediafire.com/file/crcscmw8p3f7ek5/M!KEY+HEX++INTERNEL+V9.9.zip/file"
+                       class="btn-buy">
+                        <i><b>// UPDATING NOW \\</b></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================
+     CURSOR SCRIPT
+================================ -->
+
+<script>
+
+const cursor = document.querySelector(".cursor");
+const dot = document.querySelector(".cursor-dot");
+
+document.addEventListener("mousemove",(e)=>{
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
+
+});
+
+document.querySelectorAll("a,button").forEach(item=>{
+
+    item.addEventListener("mouseenter",()=>{
+
+        cursor.style.width = "45px";
+        cursor.style.height = "45px";
+        cursor.style.background = "rgba(255,255,255,.08)";
+
+    });
+
+    item.addEventListener("mouseleave",()=>{
+
+        cursor.style.width = "28px";
+        cursor.style.height = "28px";
+        cursor.style.background = "transparent";
+
+    });
+
+});
+
+</script>
+
+<!-- ================================
+     LOGIN CHECK
+================================ -->
+
+<script>
+
+if(sessionStorage.getItem("login")!="true"){
+    window.location.href="index.html";
+}
+
+</script>
+
+<!-- ================================
+     MOUSE TRAIL
+================================ -->
+
+<script>
+
+document.addEventListener("mousemove",function(e){
+
+    let trail = document.createElement("span");
+
+    trail.style.position = "fixed";
+    trail.style.left = e.clientX + "px";
+    trail.style.top = e.clientY + "px";
+    trail.style.width = "10px";
+    trail.style.height = "10px";
+    trail.style.background = "#fff";
+    trail.style.borderRadius = "50%";
+    trail.style.pointerEvents = "none";
+    trail.style.boxShadow = "0 0 8px rgba(255,255,255,.4)";
+    trail.style.transform = "translate(-50%,-50%)";
+    trail.style.zIndex = "9998";
+    trail.style.transition = "all .6s linear";
+
+    document.body.appendChild(trail);
+
+    setTimeout(()=>{
+
+        trail.style.opacity = "0";
+        trail.style.width = "2px";
+        trail.style.height = "2px";
+
+    },10);
+
+    setTimeout(()=>{
+
+        trail.remove();
+
+    },600);
+
+});
+
+</script>
+
+<!-- ================================
+     LOADER HIDE
+================================ -->
+
+<script>
+
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        const loader = document.getElementById("loader");
+
+        if(loader){
+            loader.style.display = "none";
+        }
+
+    },1500);
+
+});
+
+</script>
+
+<!-- ================================
+     RAIN EFFECT
+================================ -->
+
+<script>
+
+function createRain(){
+
+    const rain = document.createElement("div");
+
+    rain.className = "rain";
+
+    rain.style.left =
+        Math.random() * window.innerWidth + "px";
+
+    rain.style.height =
+        (50 + Math.random() * 100) + "px";
+
+    rain.style.animationDuration =
+        (0.5 + Math.random() * 0.6) + "s";
+
+    document.body.appendChild(rain);
+
+    setTimeout(()=>{
+
+        rain.remove();
+
+    },1200);
+
+}
+
+setInterval(()=>{
+
+    for(let i=0;i<5;i++){
+        createRain();
+    }
+
+},180);
+
+</script>
+
+</body>
+</html>
 ```
