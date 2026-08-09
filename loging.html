@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,9 +12,9 @@
 
 <style>
 
-/* ================================
+/* =====================================================
    RESET
-================================ */
+===================================================== */
 
 *{
     margin:0;
@@ -33,27 +34,58 @@ body{
     cursor:none;
 }
 
-/* ================================
-   BACKGROUND
-================================ */
+/* =====================================================
+   SOFT LIGHT PINK BACKGROUND FROM BOTTOM
+===================================================== */
 
 body::before{
     content:"";
     position:fixed;
-    inset:0;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:75%;
     background:
-        radial-gradient(circle at 20% 20%,rgba(255,255,255,.025),transparent 25%),
-        radial-gradient(circle at 80% 80%,rgba(255,255,255,.02),transparent 25%);
-    z-index:-1;
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(255,170,205,.28) 0%,
+            rgba(255,130,180,.16) 25%,
+            rgba(255,80,150,.07) 45%,
+            transparent 72%
+        );
+    pointer-events:none;
+    z-index:-3;
 }
 
-/* ================================
+/* Second very soft pink layer */
+
+body::after{
+    content:"";
+    position:fixed;
+    left:0;
+    bottom:-180px;
+    width:100%;
+    height:55%;
+    background:
+        radial-gradient(
+            ellipse at center bottom,
+            rgba(255,190,220,.22),
+            rgba(255,120,175,.08) 40%,
+            transparent 75%
+        );
+    filter:blur(25px);
+    pointer-events:none;
+    z-index:-2;
+}
+
+/* =====================================================
    LOADER
-================================ */
+===================================================== */
 
 #loader{
     position:fixed;
-    inset:0;
+    top:0;
+    left:0;
     width:100%;
     height:100%;
     background:#000;
@@ -86,9 +118,9 @@ body::before{
     }
 }
 
-/* ================================
+/* =====================================================
    CURSOR
-================================ */
+===================================================== */
 
 .cursor{
     width:28px;
@@ -102,7 +134,7 @@ body::before{
         width .2s,
         height .2s,
         background .2s;
-    box-shadow:0 0 10px rgba(255,255,255,.4);
+    box-shadow:0 0 10px rgba(255,255,255,.45);
     z-index:99999;
 }
 
@@ -114,7 +146,7 @@ body::before{
     position:fixed;
     pointer-events:none;
     transform:translate(-50%,-50%);
-    box-shadow:0 0 10px rgba(255,255,255,.5);
+    box-shadow:0 0 12px rgba(255,255,255,.6);
     z-index:100000;
 }
 
@@ -123,27 +155,28 @@ button{
     cursor:none;
 }
 
-/* ================================
+/* =====================================================
    SIDEBAR
-================================ */
+===================================================== */
 
 .sidebar{
     width:250px;
     height:100vh;
     position:fixed;
-    left:0;
     top:0;
-    background:#050505;
+    left:0;
+    background:rgba(4,4,4,.96);
+    backdrop-filter:blur(12px);
     border-right:1px solid #222;
     padding:25px;
-    box-shadow:10px 0 30px rgba(255,255,255,.02);
+    box-shadow:10px 0 35px rgba(0,0,0,.7);
     z-index:1000;
 }
 
 .logo{
     text-align:center;
-    font-size:25px;
-    font-weight:bold;
+    font-size:26px;
+    font-weight:900;
     color:#fff;
     letter-spacing:1px;
     margin-bottom:40px;
@@ -153,7 +186,7 @@ button{
     display:block;
     padding:13px;
     margin-bottom:12px;
-    border-radius:8px;
+    border-radius:9px;
     text-decoration:none;
     color:#ddd;
     background:#050505;
@@ -164,37 +197,38 @@ button{
 .menu a:hover{
     background:#111;
     color:#fff;
-    border-color:#333;
+    border-color:#444;
     transform:translateX(7px);
 }
 
-/* ================================
+/* =====================================================
    MAIN
-================================ */
+===================================================== */
 
 .main{
     margin-left:250px;
     padding:30px;
+    position:relative;
+    z-index:1;
 }
 
-/* ================================
+/* =====================================================
    NEWS BAR
-================================ */
+===================================================== */
 
 .news-bar{
     margin:10px 0 25px;
     padding:12px;
-    border-radius:8px;
-    background:#050505;
+    border-radius:9px;
+    background:rgba(5,5,5,.92);
     border:1px solid #222;
     color:#fff;
     font-weight:bold;
-    overflow:hidden;
 }
 
-/* ================================
+/* =====================================================
    HERO
-================================ */
+===================================================== */
 
 .hero-banner{
     text-align:center;
@@ -202,8 +236,8 @@ button{
     border:1px solid #222;
     border-radius:15px;
     margin:25px 0;
-    background:#050505;
-    box-shadow:none;
+    background:rgba(5,5,5,.94);
+    box-shadow:0 15px 45px rgba(0,0,0,.35);
 }
 
 .hero-banner h1{
@@ -237,9 +271,9 @@ button{
     border-color:#555;
 }
 
-/* ================================
+/* =====================================================
    TOP
-================================ */
+===================================================== */
 
 .top{
     display:flex;
@@ -252,12 +286,12 @@ button{
     font-size:25px;
 }
 
-/* ================================
+/* =====================================================
    CARDS
-================================ */
+===================================================== */
 
 .card-box{
-    background:#050505;
+    background:rgba(5,5,5,.94);
     border:1px solid #222;
     padding:25px;
     border-radius:12px;
@@ -269,7 +303,9 @@ button{
 .card-box:hover{
     transform:translateY(-6px);
     border-color:#444;
-    box-shadow:0 10px 30px rgba(255,255,255,.04);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.6),
+        0 0 25px rgba(255,150,190,.05);
 }
 
 .card-box h3{
@@ -287,9 +323,9 @@ button{
     color:#aaa;
 }
 
-/* ================================
+/* =====================================================
    BUTTON
-================================ */
+===================================================== */
 
 .btn-buy{
     display:inline-block;
@@ -309,9 +345,9 @@ button{
     color:#fff;
 }
 
-/* ================================
+/* =====================================================
    TABS
-================================ */
+===================================================== */
 
 .tabs{
     display:flex;
@@ -338,37 +374,48 @@ button{
     transform:translateY(-3px);
 }
 
-/* ================================
-   PANELS SECTION
-================================ */
+/* =====================================================
+   PANELS MAIN BOX
+===================================================== */
 
 #panels{
     position:relative;
-    background:#050505;
+    background:rgba(5,5,5,.95);
     border:1px solid #333;
     border-radius:12px;
-    padding:32px 20px 20px;
+    padding:34px 20px 20px;
     margin:35px 0;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.5),
+        0 0 40px rgba(255,150,190,.035);
 }
 
-/* TITLE ON BORDER */
+/* =====================================================
+   TITLE ON BORDER
+===================================================== */
 
 #panels::before{
     content:"FREE ACCESS AVAILABLE PANELS";
     position:absolute;
     top:-14px;
     left:22px;
+
     background:#000;
+
     color:#fff;
+
     padding:3px 14px;
+
     font-size:15px;
     font-weight:900;
+
     letter-spacing:1px;
 }
 
-/* ================================
-   NOTICE
-================================ */
+/* =====================================================
+   NOTICE BOX
+===================================================== */
 
 .notice-box{
     background:#080808;
@@ -397,15 +444,14 @@ button{
     margin:7px 0;
 }
 
-/* ================================
+/* =====================================================
    CLOCK
-================================ */
+===================================================== */
 
 .clock-box{
     color:#fff;
     font-size:20px;
     font-weight:bold;
-    text-shadow:none;
     background:#050505;
     border:1px solid #222;
     border-radius:8px;
@@ -413,34 +459,81 @@ button{
     display:inline-block;
 }
 
-/* ================================
-   RAIN / TRAIL
-================================ */
+/* =====================================================
+   LIGHT PINK BOTTOM FLOATING GLOW
+===================================================== */
+
+.pink-glow{
+    position:fixed;
+    left:50%;
+    bottom:-260px;
+
+    width:900px;
+    height:500px;
+
+    transform:translateX(-50%);
+
+    background:radial-gradient(
+        ellipse,
+        rgba(255,175,205,.22) 0%,
+        rgba(255,120,175,.12) 35%,
+        transparent 72%
+    );
+
+    filter:blur(35px);
+
+    pointer-events:none;
+    z-index:-1;
+
+    animation:pinkPulse 5s ease-in-out infinite;
+}
+
+@keyframes pinkPulse{
+
+    0%,
+    100%{
+        opacity:.65;
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        opacity:1;
+        transform:translateX(-50%) scale(1.08);
+    }
+
+}
+
+/* =====================================================
+   RAIN
+===================================================== */
 
 .rain{
     position:fixed;
     top:-100px;
     width:1px;
-    background:rgba(255,255,255,.15);
+    background:rgba(255,180,210,.15);
     pointer-events:none;
     z-index:-1;
     animation:rainFall 1s linear forwards;
 }
 
 @keyframes rainFall{
+
     from{
         transform:translateY(0);
         opacity:.5;
     }
+
     to{
         transform:translateY(120vh);
         opacity:0;
     }
+
 }
 
-/* ================================
+/* =====================================================
    RESPONSIVE
-================================ */
+===================================================== */
 
 @media(max-width:900px){
 
@@ -506,25 +599,33 @@ button{
 
 <body>
 
-<!-- ================================
+<!-- BOTTOM PINK GLOW -->
+<div class="pink-glow"></div>
+
+<!-- =====================================================
      LOADER
-================================ -->
+===================================================== -->
 
 <div id="loader">
+
     <div class="spinner"></div>
-    <h2>M!KEY x CHEATZ</h2>
+
+    <h2>
+        M!KEY x CHEATZ
+    </h2>
+
 </div>
 
-<!-- ================================
+<!-- =====================================================
      CURSOR
-================================ -->
+===================================================== -->
 
 <div class="cursor"></div>
 <div class="cursor-dot"></div>
 
-<!-- ================================
+<!-- =====================================================
      SIDEBAR
-================================ -->
+===================================================== -->
 
 <div class="sidebar">
 
@@ -562,58 +663,109 @@ button{
 
 </div>
 
-<!-- ================================
-     DASHBOARD
-================================ -->
+<!-- =====================================================
+     MAIN DASHBOARD
+===================================================== -->
 
 <div class="main">
 
     <!-- NEWS -->
 
     <div class="news-bar">
+
         <marquee behavior="scroll" direction="left">
-            🔥 NEW UPDATE: Free Bypass V9.6 Added |
-            🎮 New Emulator Uploaded |
-            📱 Latest APK Available |
+
+            🔥 NEW UPDATE:
+            Free Bypass V9.6 Added
+            |
+            🎮 New Emulator Uploaded
+            |
+            📱 Latest APK Available
+            |
             💙 Welcome to MALIYA CHEATZ
+
         </marquee>
+
     </div>
 
-    <!-- STATS -->
+    <!-- =================================================
+         STATS
+    ================================================== -->
 
     <div class="row g-4 my-4">
 
         <div class="col-md-3">
+
             <div class="card-box">
-                <h3>👥 12K+</h3>
-                <p>Users</p>
+
+                <h3>
+                    👥 12K+
+                </h3>
+
+                <p>
+                    Users
+                </p>
+
             </div>
+
         </div>
 
-        <div class="col-md-3">
-            <div class="card-box">
-                <h3>⬇ 58K+</h3>
-                <p>Downloads</p>
-            </div>
-        </div>
 
         <div class="col-md-3">
+
             <div class="card-box">
-                <h3>📂 30+</h3>
-                <p>Files</p>
+
+                <h3>
+                    ⬇ 58K+
+                </h3>
+
+                <p>
+                    Downloads
+                </p>
+
             </div>
+
         </div>
 
+
         <div class="col-md-3">
+
             <div class="card-box">
-                <h3>🟢 ONLINE</h3>
-                <p>Server Status</p>
+
+                <h3>
+                    📂 30+
+                </h3>
+
+                <p>
+                    Files
+                </p>
+
             </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <div class="card-box">
+
+                <h3>
+                    🟢 ONLINE
+                </h3>
+
+                <p>
+                    Server Status
+                </p>
+
+            </div>
+
         </div>
 
     </div>
 
-    <!-- HERO -->
+    <!-- =================================================
+         HERO
+    ================================================== -->
 
     <div class="top">
 
@@ -641,39 +793,55 @@ button{
 
     <hr style="border-color:#222;">
 
-    <!-- ================================
-         TOP DOWNLOAD TABS
-    ================================= -->
+    <!-- =================================================
+         TOP DOWNLOAD BUTTONS
+    ================================================== -->
 
     <div class="tabs">
 
-        <a href="https://www.mediafire.com/file/w0xl6ah3nqd4jvv/Msi_App_Player.rar/file"
-           class="tab-btn">
+        <a
+            href="https://www.mediafire.com/file/w0xl6ah3nqd4jvv/Msi_App_Player.rar/file"
+            class="tab-btn">
+
             🎮 MSI EMULATOR
+
         </a>
 
-        <a href="https://www.mediafire.com/file/uvkfdsjcfbqovde/BlueStacks_App_Player_v5.22.130.1019.exe/file"
-           class="tab-btn">
+
+        <a
+            href="https://www.mediafire.com/file/uvkfdsjcfbqovde/BlueStacks_App_Player_v5.22.130.1019.exe/file"
+            class="tab-btn">
+
             🎮 BLOOSTACKS EMULATOR
+
         </a>
 
-        <a href="https://www.mediafire.com/file/6zos07nidhlt1m0/FF_Normal_HDN_REGEDIT_OB54.xapk/file"
-           class="tab-btn">
+
+        <a
+            href="https://www.mediafire.com/file/6zos07nidhlt1m0/FF_Normal_HDN_REGEDIT_OB54.xapk/file"
+            class="tab-btn">
+
             📱 APKS
+
         </a>
 
-        <a href="https://www.mediafire.com/file/tljrgnyfxhmcqli/PANEL_DRIVERS.zip/file"
-           class="tab-btn">
+
+        <a
+            href="https://www.mediafire.com/file/tljrgnyfxhmcqli/PANEL_DRIVERS.zip/file"
+            class="tab-btn">
+
             🛠 ERROR FIX
+
         </a>
 
     </div>
 
-    <br><br>
+    <br>
+    <br>
 
-    <!-- ================================
+    <!-- =================================================
          PANELS
-    ================================= -->
+    ================================================== -->
 
     <div id="panels">
 
@@ -690,15 +858,30 @@ button{
             </p>
 
             <ul>
-                <li>✔ First download panel in download links.</li>
-                <li>✔ User name and password come my inbox.</li>
-                <li>✔ Risk functions don't use in main ID.</li>
-                <li>✔ If you have any problems DM to me.</li>
+
+                <li>
+                    ✔ First download panel in download links.
+                </li>
+
+                <li>
+                    ✔ User name and password come my inbox.
+                </li>
+
+                <li>
+                    ✔ Risk functions don't use in main ID.
+                </li>
+
+                <li>
+                    ✔ If you have any problems DM to me.
+                </li>
+
             </ul>
 
         </div>
 
-        <!-- PANEL CARDS -->
+        <!-- =================================================
+             PANEL CARDS
+        ================================================== -->
 
         <div class="row g-4">
 
@@ -709,26 +892,49 @@ button{
                 <div class="card-box">
 
                     <h4>
-                        <b><i>FREE BYPASS</i></b>
+                        <b>
+                            <i>
+                                FREE BYPASS
+                            </i>
+                        </b>
                     </h4>
 
                     <p>
+
                         <i>
+
                             <br>
-                            <b>USER - TEST</b>
+
+                            <b>
+                                USER - TEST
+                            </b>
+
                             <br>
-                            <b>PASSWORD - 123</b>
+
+                            <b>
+                                PASSWORD - 123
+                            </b>
+
                         </i>
+
                     </p>
 
-                    <a href="https://www.mediafire.com/file/wzs7bcqwyjj30mx/MALIYA+CHEATZ+FREE+UID+BYPASS+V9.6.zip/file"
-                       class="btn-buy">
-                        <i><b>// UPDATING NOW \\</b></i>
+                    <a
+                        href="https://www.mediafire.com/file/wzs7bcqwyjj30mx/MALIYA+CHEATZ+FREE+UID+BYPASS+V9.6.zip/file"
+                        class="btn-buy">
+
+                        <i>
+                            <b>
+                                // UPDATING NOW \\
+                            </b>
+                        </i>
+
                     </a>
 
                 </div>
 
             </div>
+
 
             <!-- FREE PANEL -->
 
@@ -737,26 +943,49 @@ button{
                 <div class="card-box">
 
                     <h4>
-                        <b><i>FREE PANEL</i></b>
+                        <b>
+                            <i>
+                                FREE PANEL
+                            </i>
+                        </b>
                     </h4>
 
                     <p>
+
                         <i>
+
                             <br>
-                            <b>USER - ESP</b>
+
+                            <b>
+                                USER - ESP
+                            </b>
+
                             <br>
-                            <b>PASSWORD - 222</b>
+
+                            <b>
+                                PASSWORD - 222
+                            </b>
+
                         </i>
+
                     </p>
 
-                    <a href="https://www.mediafire.com/file/hkynhaqm327qad9/M!KEY+CHEATZ++PANELC#+V1.0.zip/file"
-                       class="btn-buy">
-                        <b><i>// DOWNLOAD \\</i></b>
+                    <a
+                        href="https://www.mediafire.com/file/hkynhaqm327qad9/M!KEY+CHEATZ++PANELC#+V1.0.zip/file"
+                        class="btn-buy">
+
+                        <b>
+                            <i>
+                                // DOWNLOAD \\
+                            </i>
+                        </b>
+
                     </a>
 
                 </div>
 
             </div>
+
 
             <!-- INTERNAL PANEL -->
 
@@ -765,21 +994,43 @@ button{
                 <div class="card-box">
 
                     <h4>
-                        <b><i>INTERNEL PANEL</i></b>
+                        <b>
+                            <i>
+                                INTERNEL PANEL
+                            </i>
+                        </b>
                     </h4>
 
                     <p>
+
                         <i>
+
                             <br>
-                            <b>USER - ESP</b>
+
+                            <b>
+                                USER - ESP
+                            </b>
+
                             <br>
-                            <b>PASSWORD - 222</b>
+
+                            <b>
+                                PASSWORD - 222
+                            </b>
+
                         </i>
+
                     </p>
 
-                    <a href="https://www.mediafire.com/file/crcscmw8p3f7ek5/M!KEY+HEX++INTERNEL+V9.9.zip/file"
-                       class="btn-buy">
-                        <i><b>// UPDATING NOW \\</b></i>
+                    <a
+                        href="https://www.mediafire.com/file/crcscmw8p3f7ek5/M!KEY+HEX++INTERNEL+V9.9.zip/file"
+                        class="btn-buy">
+
+                        <i>
+                            <b>
+                                // UPDATING NOW \\
+                            </b>
+                        </i>
+
                     </a>
 
                 </div>
@@ -792,9 +1043,9 @@ button{
 
 </div>
 
-<!-- ================================
+<!-- =====================================================
      CURSOR SCRIPT
-================================ -->
+===================================================== -->
 
 <script>
 
@@ -803,29 +1054,41 @@ const dot = document.querySelector(".cursor-dot");
 
 document.addEventListener("mousemove",(e)=>{
 
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
+    cursor.style.left =
+        e.clientX + "px";
 
-    dot.style.left = e.clientX + "px";
-    dot.style.top = e.clientY + "px";
+    cursor.style.top =
+        e.clientY + "px";
+
+    dot.style.left =
+        e.clientX + "px";
+
+    dot.style.top =
+        e.clientY + "px";
 
 });
+
 
 document.querySelectorAll("a,button").forEach(item=>{
 
     item.addEventListener("mouseenter",()=>{
 
-        cursor.style.width = "45px";
-        cursor.style.height = "45px";
-        cursor.style.background = "rgba(255,255,255,.08)";
+        cursor.style.width="45px";
+        cursor.style.height="45px";
+
+        cursor.style.background=
+            "rgba(255,255,255,.08)";
 
     });
 
+
     item.addEventListener("mouseleave",()=>{
 
-        cursor.style.width = "28px";
-        cursor.style.height = "28px";
-        cursor.style.background = "transparent";
+        cursor.style.width="28px";
+        cursor.style.height="28px";
+
+        cursor.style.background=
+            "transparent";
 
     });
 
@@ -833,50 +1096,80 @@ document.querySelectorAll("a,button").forEach(item=>{
 
 </script>
 
-<!-- ================================
+<!-- =====================================================
      LOGIN CHECK
-================================ -->
+===================================================== -->
 
 <script>
 
-if(sessionStorage.getItem("login")!="true"){
+/*
+   Dashboard login protection.
+   If login value is not true,
+   user will return to index.html.
+*/
+
+if(sessionStorage.getItem("login") !== "true"){
+
     window.location.href="index.html";
+
 }
 
 </script>
 
-<!-- ================================
+<!-- =====================================================
      MOUSE TRAIL
-================================ -->
+===================================================== -->
 
 <script>
 
 document.addEventListener("mousemove",function(e){
 
-    let trail = document.createElement("span");
+    let trail =
+        document.createElement("span");
 
-    trail.style.position = "fixed";
-    trail.style.left = e.clientX + "px";
-    trail.style.top = e.clientY + "px";
-    trail.style.width = "10px";
-    trail.style.height = "10px";
-    trail.style.background = "#fff";
-    trail.style.borderRadius = "50%";
-    trail.style.pointerEvents = "none";
-    trail.style.boxShadow = "0 0 8px rgba(255,255,255,.4)";
-    trail.style.transform = "translate(-50%,-50%)";
-    trail.style.zIndex = "9998";
-    trail.style.transition = "all .6s linear";
+    trail.style.position="fixed";
+
+    trail.style.left=
+        e.clientX+"px";
+
+    trail.style.top=
+        e.clientY+"px";
+
+    trail.style.width="9px";
+
+    trail.style.height="9px";
+
+    trail.style.background=
+        "rgba(255,190,215,.8)";
+
+    trail.style.borderRadius="50%";
+
+    trail.style.pointerEvents="none";
+
+    trail.style.boxShadow=
+        "0 0 10px rgba(255,170,205,.6)";
+
+    trail.style.transform=
+        "translate(-50%,-50%)";
+
+    trail.style.zIndex="9998";
+
+    trail.style.transition=
+        "all .6s linear";
 
     document.body.appendChild(trail);
 
+
     setTimeout(()=>{
 
-        trail.style.opacity = "0";
-        trail.style.width = "2px";
-        trail.style.height = "2px";
+        trail.style.opacity="0";
+
+        trail.style.width="2px";
+
+        trail.style.height="2px";
 
     },10);
+
 
     setTimeout(()=>{
 
@@ -888,9 +1181,9 @@ document.addEventListener("mousemove",function(e){
 
 </script>
 
-<!-- ================================
+<!-- =====================================================
      LOADER HIDE
-================================ -->
+===================================================== -->
 
 <script>
 
@@ -898,10 +1191,13 @@ window.addEventListener("load",function(){
 
     setTimeout(function(){
 
-        const loader = document.getElementById("loader");
+        const loader =
+            document.getElementById("loader");
 
         if(loader){
-            loader.style.display = "none";
+
+            loader.style.display="none";
+
         }
 
     },1500);
@@ -910,28 +1206,34 @@ window.addEventListener("load",function(){
 
 </script>
 
-<!-- ================================
-     RAIN EFFECT
-================================ -->
+<!-- =====================================================
+     LIGHT PINK RAIN
+===================================================== -->
 
 <script>
 
 function createRain(){
 
-    const rain = document.createElement("div");
+    const rain =
+        document.createElement("div");
 
-    rain.className = "rain";
+    rain.className="rain";
 
-    rain.style.left =
-        Math.random() * window.innerWidth + "px";
+    rain.style.left=
+        Math.random() *
+        window.innerWidth +
+        "px";
 
-    rain.style.height =
-        (50 + Math.random() * 100) + "px";
+    rain.style.height=
+        (50 + Math.random()*100) +
+        "px";
 
-    rain.style.animationDuration =
-        (0.5 + Math.random() * 0.6) + "s";
+    rain.style.animationDuration=
+        (0.5 + Math.random()*0.6) +
+        "s";
 
     document.body.appendChild(rain);
+
 
     setTimeout(()=>{
 
@@ -941,10 +1243,13 @@ function createRain(){
 
 }
 
+
 setInterval(()=>{
 
     for(let i=0;i<5;i++){
+
         createRain();
+
     }
 
 },180);
